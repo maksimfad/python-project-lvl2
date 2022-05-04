@@ -4,14 +4,14 @@ version = "0.1.0"
 description = ""
 authors = ["maksimfadeev <7522688@gmail.com>"]
 packages = [
-    { include = "scripts"}
+    { include = "gendiff"}
 ]
 
 [tool.poetry.dependencies]
 python = "^3.9"
 
 [tool.poetry.scripts]
-gendiff = "scripts.gendiff:main"
+gendiff = "gendiff.scripts.gendiff:main"
 
 [tool.poetry.dev-dependencies]
 
