@@ -24,6 +24,6 @@ jobs:
           poetry install
       - name: Run linter and pytest
         run: |
-          poetry run pytest
+          make pytest
           make lint
           
