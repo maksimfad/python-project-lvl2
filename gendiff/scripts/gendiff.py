@@ -28,22 +28,20 @@ def generate_diff(file_path1, file_path2):
     key_list = making_keys_list(first_file, second_file)
     result = '{\n'
     # print(key_list)
-    no_changes_string = '    {}: {}\n'
-    add_key_string = '  + {}: {}\n'
-    delete_key_string = '  - {}: {}\n'
+    line = '  {} {}: {}\n'
     for key in key_list:
         if first_file.get(key) == second_file.get(key):
-            result += (no_changes_string.format(key, converte_output(second_file[key])))
+            result += (line.format(' ', key, converte(second_file[key])))
             continue
         if first_file.get(key) is None:
-            result += (add_key_string.format(key, converte_output(second_file[key])))
+            result += (line.format('+', key, converte(second_file[key])))
             continue
         if second_file.get(key) is None:
-            result += (delete_key_string.format(key, converte_output(first_file[key])))
+            result += (line.format('-', key, converte(first_file[key])))
             continue
         if first_file.get(key) != second_file.get(key):
-            result += (delete_key_string.format(key, converte_output(first_file[key])))
-            result += (add_key_string.format(key, converte_output(second_file[key])))
+            result += (line.format('-', key, converte(first_file[key])))
+            result += (line.format('+', key, converte(second_file[key])))
     # print(second_file)
     result += '}'
     return result
@@ -61,7 +59,7 @@ def making_keys_list(first_file, second_file):
     return key_list
 
 
-def converte_output(output):
+def converte(output):
     if output is True:
         output = 'true'
     if output is False:
