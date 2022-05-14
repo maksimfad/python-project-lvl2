@@ -27,7 +27,7 @@ def generate_diff(file_path1, file_path2):
     second_file = json.load(open(file_path2))
     key_list = making_keys_list(first_file, second_file)
     result = '{\n'
-    # print(key_list)
+    print(key_list)
     line = '  {} {}: {}\n'
     for key in key_list:
         if first_file.get(key) == second_file.get(key):
