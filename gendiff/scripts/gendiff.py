@@ -21,34 +21,30 @@ def main():
 
 
 def generate_diff(file_path1, file_path2):
-    result = '{\n'
     # print(file_path1, file_path2)
     first_file = json.load(open(file_path1))
     # print(first_file['host'])
     second_file = json.load(open(file_path2))
-
     key_list = making_keys_list(first_file, second_file)
+    result = '{\n'
     # print(key_list)
+    no_changes_string = '    {}: {}\n'
+    add_key_string = '  + {}: {}\n'
+    delete_key_string = '  - {}: {}\n'
     for key in key_list:
         if first_file.get(key) == second_file.get(key):
-            result += ('    ' + key + ': '
-                       + converte_output(second_file[key]) + '\n')
+            result += (no_changes_string.format(key, converte_output(second_file[key])))
             continue
         if first_file.get(key) is None:
-            result += ('  + ' + key + ': '
-                       + converte_output(second_file[key]) + '\n')
+            result += (add_key_string.format(key, converte_output(second_file[key])))
             continue
         if second_file.get(key) is None:
-            result += ('  - ' + key + ': '
-                       + converte_output(first_file[key]) + '\n')
+            result += (delete_key_string.format(key, converte_output(first_file[key])))
             continue
         if first_file.get(key) != second_file.get(key):
-            result += ('  - ' + key + ': '
-                       + converte_output(first_file[key]) + '\n')
-            result += ('  + ' + key + ': '
-                       + converte_output(second_file[key]) + '\n')
+            result += (delete_key_string.format(key, converte_output(first_file[key])))
+            result += (add_key_string.format(key, converte_output(second_file[key])))
     # print(second_file)
-
     result += '}'
     return result
 
