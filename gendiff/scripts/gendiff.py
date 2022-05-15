@@ -31,16 +31,10 @@ def generate_diff(file_path1, file_path2):
         if first_file.get(key) == second_file.get(key):
             result += (line.format(' ', key, converte(second_file[key])))
             continue
-        if first_file.get(key) is None:
-            result += (line.format('+', key, converte(second_file[key])))
-            continue
-        if second_file.get(key) is None:
+        if first_file.get(key) is not None:
             result += (line.format('-', key, converte(first_file[key])))
-            continue
-        if first_file.get(key) != second_file.get(key):
-            result += (line.format('-', key, converte(first_file[key])))
+        if second_file.get(key) is not None:
             result += (line.format('+', key, converte(second_file[key])))
-    # print(second_file)
     result += '}'
     return result
 
