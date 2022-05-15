@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import argparse
-import json
+from gendiff.scripts.parcing import parcing_func
 # from unittest import result
 
 
@@ -22,12 +22,10 @@ def main():
 
 def generate_diff(file_path1, file_path2):
     # print(file_path1, file_path2)
-    first_file = json.load(open(file_path1))
-    # print(first_file['host'])
-    second_file = json.load(open(file_path2))
+    first_file, second_file = parcing_func(file_path1, file_path2)
     key_list = making_keys_list(first_file, second_file)
     result = '{\n'
-    print(key_list)
+    # print(key_list)
     line = '  {} {}: {}\n'
     for key in key_list:
         if first_file.get(key) == second_file.get(key):

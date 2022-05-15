@@ -7,9 +7,21 @@ from gendiff.scripts.gendiff import making_keys_list
 from gendiff.scripts.gendiff import converte
 
 
-def test_json():
-    result_json = open('tests/fixtures/result_test_json.txt', 'r')
-    assert generate_diff('tests/fixtures/file1.json', 'tests/fixtures/file2.json') == result_json.read()
+def test_generate_diff_json():
+    result = open('tests/fixtures/result_test.txt', 'r').read()
+    assert generate_diff('tests/fixtures/file1.json', 'tests/fixtures/file2.json') == result
+
+
+def test_generate_diff_yml():
+    result = open('tests/fixtures/result_test.txt', 'r').read()
+    assert generate_diff('tests/fixtures/file1.yml', 'tests/fixtures/file2.yml') == result
+
+def test_generate_diff_yml_json():
+    result = open('tests/fixtures/result_test.txt', 'r').read()
+    assert generate_diff('tests/fixtures/file1.yml', 'tests/fixtures/file2.json') == result
+    assert generate_diff('tests/fixtures/file1.json', 'tests/fixtures/file2.yml') == result
+
+
 
 
 def test_making_keys_list():
