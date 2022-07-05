@@ -3,7 +3,8 @@ import json
 import yaml
 import argparse
 
-from gendiff.formatter import stylish
+from format.formatter import stylish
+from format.plain import plain
 
 def parcing_arguments():
     parser = argparse.ArgumentParser(
@@ -14,6 +15,7 @@ def parcing_arguments():
     args = parser.parse_args()
     # print(str(args.first_file))
     # print(args.second_file)
+    #print(args.format)
     return args
 
 

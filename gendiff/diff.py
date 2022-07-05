@@ -1,13 +1,19 @@
 
 from curses import KEY_HELP
+from pydoc import plain
 from pyparsing import dict_of
 from gendiff.parcer import parcing_files
-from gendiff.formatter import stylish
+from format.formatter import stylish
+from format.plain import plain
 
 def generate_diff(file_path1, file_path2, format):
     first_file, second_file = parcing_files(file_path1, file_path2)
     diff_struct = diff(first_file, second_file)
     #print(diff_struct)
+    #print(format)
+    if format == 'plain':
+        format = plain
+        #print(format)
     result_text = format(diff_struct)
     return result_text
 
