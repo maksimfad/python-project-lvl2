@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/maksimfadeev/Python_studing/python-project-lvl2'
+poetry install
+make: Leaving directory `/Users/maksimfadeev/Python_studing/python-project-lvl2'
+ 
