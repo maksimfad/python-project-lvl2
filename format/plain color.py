@@ -16,9 +16,9 @@ def plain(diff_struct, way=''):
             action_text = action_status(item['status'])
             value = value_text(item)
             if item['status'] == 'del':
-                result_string += 'Property \'{}\' {}\n'.format(way_to_current, action_text)
+                result_string += 'Property \033[31m\'{}\'\033[0m {}\n'.format(way_to_current, action_text)
             else:
-                result_string += 'Property \'{}\' {} {}\n'.format(way_to_current, action_text, value)
+                result_string += 'Property \033[31m\'{}\'\033[0m {} {}\n'.format(way_to_current, action_text, value)
     return result_string
 
 
@@ -50,10 +50,10 @@ def value_check(value):
     if isinstance(value, dict):
         return '[complex value]'
     elif isinstance(value, str):
-        return '\'{}\''.format(value)
+        return '\033[31m\'{}\'\033[0m'.format(value)
     elif value == True:
-        return 'true'
+        return '\033[34mtrue\033[0m'
     elif value == False:
-        return 'false'
+        return '\033[34mfalse\033[0m'
     elif value == None:
         return 'null'

@@ -4,10 +4,12 @@ from cgitb import reset
 from unittest import result
 import pytest
 import json
+from format.json import json_format
 from gendiff.scripts.gendiff import generate_diff
 from format.formatter import converte
 from format.formatter import stylish
 from format.plain import plain
+from format.json import json_format
 
 
 def test_generate_diff_json():
@@ -28,6 +30,11 @@ def test_generate_diff_yml_json():
 def test_generate_diff_plain_format():
     result = open('tests/fixtures/result_plain.txt', 'r').read()
     assert generate_diff('tests/fixtures/file1.yml', 'tests/fixtures/file2.yml', plain) == result
+
+
+def test_generate_diff_json_format():
+    result = open('tests/fixtures/result_plain.txt', 'r').read()
+    assert generate_diff('tests/fixtures/file1.json', 'tests/fixtures/file2.yml', json_format)
 
 def test_converte():
     result = 'true'
