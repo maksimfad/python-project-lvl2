@@ -5,7 +5,7 @@ from unittest import result
 import pytest
 import json
 from format.json import json_format
-from gendiff.scripts.gendiff_script import generate_diff
+from gendiff.scripts.gendiff import generate_diff
 from format.formatter import converte
 from format.formatter import stylish
 from format.plain import plain
