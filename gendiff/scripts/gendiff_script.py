@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from gendiff.parcer import parcing_arguments
-from gendiff.diff import generate_diff
+from gendiff.gendiff import generate_diff
 # from unittest import result
 
 
