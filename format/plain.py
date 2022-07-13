@@ -53,7 +53,7 @@ def value_check(value):
         return '\'{}\''.format(value)
     elif value == True:
         return 'true'
-    elif value == False:
+    elif isinstance(value, bool) and value == False:
         return 'false'
     elif value == None:
         return 'null'
