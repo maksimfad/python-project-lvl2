@@ -7,7 +7,7 @@ def stylish(diff_struct, space=' ', times=2):
             times += 2
             shift = space * times
             result_string += '{}{}: '.format(shift, name)
-            result_string += stylish(key['children'], times=times+2)
+            result_string += stylish(key['children'], times=times + 2)
             result_string += '\n'
             times -= 2
         else:
@@ -27,15 +27,16 @@ def stylish(diff_struct, space=' ', times=2):
     result_string += (shift + '}')
     return result_string
 
+
 def style_value(value, times):
     if isinstance(value, dict):
         return_string = format_dict_value(value, times)
     else:
-        if value == True:
+        if value is True:
             value = 'true'
-        if isinstance(value, bool) and value == False:
+        if isinstance(value, bool) and value is False:
             value = 'false'
-        if value == None:
+        if value is None:
             value = 'null'
         return_string = str(value)
     return return_string
@@ -61,7 +62,6 @@ def format_dict_value(dict_value, times):
     shift = ' ' * times
     for key in dict_value:
             if isinstance(dict_value[key], dict):
-                #return_string += '\n'
                 return_string += '{}  {}: '.format(shift, key)
                 return_string += format_dict_value(dict_value[key], times)
                 return_string += '\n'

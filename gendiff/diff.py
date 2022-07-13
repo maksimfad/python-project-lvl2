@@ -67,4 +67,3 @@ def adding_units(full_dict, first_dict, second_dict):
                 unit['new_value'] = second_dict.get(key)
         diff_struct.append(unit)
     return diff_struct
-    
