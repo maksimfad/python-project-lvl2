@@ -38,7 +38,7 @@ def style_value(value, times):
     else:
         if value == True:
             value = 'true'
-        if value == False:
+        if isinstance(value, bool) and value == False:
             value = 'false'
         if value == None:
             value = 'null'
