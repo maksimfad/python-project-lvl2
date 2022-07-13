@@ -61,12 +61,12 @@ def format_dict_value(dict_value, times):
     times += 4
     shift = ' ' * times
     for key in dict_value:
-            if isinstance(dict_value[key], dict):
-                return_string += '{}  {}: '.format(shift, key)
-                return_string += format_dict_value(dict_value[key], times)
-                return_string += '\n'
-            else:
-                return_string += '{}  {}: {}\n'.format(shift, key, converte(dict_value[key]))
+        if isinstance(dict_value[key], dict):
+            return_string += '{}  {}: '.format(shift, key)
+            return_string += format_dict_value(dict_value[key], times)
+            return_string += '\n'
+        else:
+            return_string += '{}  {}: {}\n'.format(shift, key, converte(dict_value[key]))
     times -= 2
     shift = ' ' * times
     return_string += shift + '}'

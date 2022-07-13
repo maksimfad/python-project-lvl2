@@ -27,8 +27,8 @@ def test_generate_diff_plain_format():
 
 
 def test_generate_diff_json_format():
-    result = open('tests/fixtures/result_plain.txt', 'r').read()
-    assert generate_diff('tests/fixtures/file1.json', 'tests/fixtures/file2.yml', json_format)
+    result = open('tests/fixtures/result.json', 'r').read()
+    assert generate_diff('tests/fixtures/file1.json', 'tests/fixtures/file2.yml', json_format) == result
 
 
 def test_converte():

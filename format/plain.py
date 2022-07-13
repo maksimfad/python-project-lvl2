@@ -1,4 +1,3 @@
-from cgitb import reset
 from format.formatter import sorting
 
 
@@ -52,11 +51,11 @@ def value_check(value):
     elif isinstance(value, str):
         return '\'{}\''.format(value)
     elif isinstance(value, bool):
-        if value == False:
+        if value is False:
             return 'false'
-        elif value == True:
+        elif value is True:
             return 'true'
-    elif value == None:
+    elif value is None:
         return 'null'
     elif isinstance(value, int):
         return '{}'.format(value)
