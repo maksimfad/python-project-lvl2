@@ -51,9 +51,12 @@ def value_check(value):
         return '[complex value]'
     elif isinstance(value, str):
         return '\'{}\''.format(value)
-    elif value == True:
-        return 'true'
-    elif isinstance(value, bool) and value == False:
-        return 'false'
+    elif isinstance(value, bool):
+        if value == False:
+            return 'false'
+        elif value == True:
+            return 'true'
     elif value == None:
         return 'null'
+    elif isinstance(value, int):
+        return '\'{}\''.format(value)
