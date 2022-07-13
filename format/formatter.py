@@ -1,7 +1,6 @@
 def stylish(diff_struct, space=' ', times=2):
     result_string = '{\n'
     diff_struct.sort(key=sorting)
-    
     for key in diff_struct:
         name = key.get('name')
         if isinstance(key.get('children'), list):

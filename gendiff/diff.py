@@ -17,6 +17,8 @@ def generate_diff(file_path1, file_path2, format=stylish):
     if format == 'stylish':
         format = stylish
     result_text = format(diff_struct)
+    if format == plain:
+        result_text = result_text[:-1]
     return result_text
 
 
