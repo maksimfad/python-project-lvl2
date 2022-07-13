@@ -1,4 +1,4 @@
-import imp
+# import imp
 from gendiff.parcer import parcing_files
 from format.plain import plain
 from format.json import json_format
