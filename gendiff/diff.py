@@ -13,6 +13,8 @@ def generate_diff(file_path1, file_path2, format=stylish):
         format = plain
     if format == 'json':
         format = json_format
+    if format == 'stylish':
+        format = stylish
     result_text = format(diff_struct)
     return result_text
 
