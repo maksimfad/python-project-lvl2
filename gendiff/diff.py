@@ -34,7 +34,7 @@ def diff(first_dict, second_dict):
                 full_dict[key] = make_full_dict(first_dict.get(key), second_dict.get(key))
         return full_dict
     full_dict = make_full_dict(first_dict, second_dict)
-    print('\n')
+    #print('\n')
     diff_struct = adding_units(full_dict, first_dict, second_dict)
     # with open("tests/fixtures/result.json", "w") as write_file:
         # json.dump(diff_struct, write_file)
