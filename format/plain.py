@@ -59,4 +59,4 @@ def value_check(value):
     elif value == None:
         return 'null'
     elif isinstance(value, int):
-        return '\'{}\''.format(value)
+        return '{}'.format(value)
