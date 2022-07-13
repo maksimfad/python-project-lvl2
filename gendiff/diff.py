@@ -3,7 +3,6 @@ from gendiff.parcer import parcing_files
 from format.plain import plain
 from format.json import json_format
 from format.formatter import stylish
-import json
 
 
 def generate_diff(file_path1, file_path2, format=stylish):
@@ -34,12 +33,9 @@ def diff(first_dict, second_dict):
                 full_dict[key] = make_full_dict(first_dict.get(key), second_dict.get(key))
         return full_dict
     full_dict = make_full_dict(first_dict, second_dict)
-    #print('\n')
     diff_struct = adding_units(full_dict, first_dict, second_dict)
-    # with open("tests/fixtures/result.json", "w") as write_file:
-        # json.dump(diff_struct, write_file)
-    # print(json.dumps(diff_struct))
     return diff_struct
+
 
 def adding_units(full_dict, first_dict, second_dict):
     diff_struct = []
@@ -71,3 +67,4 @@ def adding_units(full_dict, first_dict, second_dict):
                 unit['new_value'] = second_dict.get(key)
         diff_struct.append(unit)
     return diff_struct
+    
