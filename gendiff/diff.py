@@ -2,10 +2,11 @@
 from gendiff.parcer import parcing_files
 from format.plain import plain
 from format.json import json_format
+from format.formatter import stylish
 import json
 
 
-def generate_diff(file_path1, file_path2, format):
+def generate_diff(file_path1, file_path2, format=stylish):
     first_file, second_file = parcing_files(file_path1, file_path2)
     diff_struct = diff(first_file, second_file)
     if format == 'plain':
