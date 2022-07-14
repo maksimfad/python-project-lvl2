@@ -41,16 +41,6 @@ def format_value(value, times):
     return return_string
 
 
-def converte(output):
-    if output is None:
-        output = 'null'
-    if output is True:
-        output = 'true'
-    if output is False:
-        output = 'false'
-    return str(output)
-
-
 def format_dict_value(dict_value, times):
     return_string = '{\n'
     times += 4
@@ -61,7 +51,7 @@ def format_dict_value(dict_value, times):
             return_string += format_dict_value(dict_value[key], times)
             return_string += '\n'
         else:
-            return_string += '{}  {}: {}\n'.format(shift, key, converte(dict_value[key]))
+            return_string += '{}  {}: {}\n'.format(shift, key, format_value(dict_value[key], times))
     times -= 2
     shift = ' ' * times
     return_string += shift + '}'
