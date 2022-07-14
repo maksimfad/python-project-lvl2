@@ -68,5 +68,6 @@ def generate_diff_struct(full_dict, first_dict, second_dict):
         diff_struct.sort(key=sorting)
     return diff_struct
 
+
 def sorting(unit):
     return unit['name']
