@@ -1,3 +1,10 @@
+### TODO
+    * add description of project here, example see here https://ru.hexlet.io/blog/posts/kak-razrabotchiku-uluchshit-svoe-testovoe-zadanie
+    * analyze code based on CodeClimate issues
+    * add files to .gitignore
+    * remake asciinemas (not all)
+    * install packet on my computer
+    
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/maksimfad/python-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/maksimfad/python-project-lvl2/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/4011ef9900bd70aa26a9/maintainability)](https://codeclimate.com/github/maksimfad/python-project-lvl2/maintainability)

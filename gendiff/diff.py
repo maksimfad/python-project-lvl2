@@ -1,4 +1,3 @@
-# import imp
 from gendiff.parcer import parcing_files
 from format.plain import plain
 from format.json import json_format
@@ -6,8 +5,10 @@ from format.formatter import stylish
 
 
 def generate_diff(file_path1, file_path2, format=stylish):
-    first_file, second_file = parcing_files(file_path1, file_path2)
-    diff_struct = diff(first_file, second_file)
+    # Generates diff string in different formats
+    first_dict, second_dict = parcing_files(file_path1, file_path2)
+    full_dict = make_full_dict(first_dict, second_dict)
+    diff_struct = generate_diff_struct(full_dict, first_dict, second_dict)
     # print(diff_struct)
     if format == 'plain':
         format = plain
@@ -16,28 +17,28 @@ def generate_diff(file_path1, file_path2, format=stylish):
     if format == 'stylish':
         format = stylish
     result_text = format(diff_struct)
+    # FIXME
+    # fix func plain() in plain module to remove this block
     if format == plain:
+        # removing last '\n' from result in plain format
         result_text = result_text[:-1]
     return result_text
 
 
-def diff(first_dict, second_dict):
-    def make_full_dict(first_dict, second_dict):
-        full_dict = {}
-        if isinstance(first_dict, dict):
-            full_dict.update(first_dict)
-        if isinstance(second_dict, dict):
-            full_dict.update(second_dict)
-        for key in full_dict:
-            if isinstance(full_dict.get(key), dict) and isinstance(first_dict.get(key), dict) and isinstance(second_dict.get(key), dict):
-                full_dict[key] = make_full_dict(first_dict.get(key), second_dict.get(key))
-        return full_dict
-    full_dict = make_full_dict(first_dict, second_dict)
-    diff_struct = adding_units(full_dict, first_dict, second_dict)
-    return diff_struct
+def make_full_dict(first_dict, second_dict):
+    # make full dict to get all keys by updating from first and second dict, values doesn't matter
+    full_dict = {}
+    if isinstance(first_dict, dict):
+        full_dict.update(first_dict)
+    if isinstance(second_dict, dict):
+        full_dict.update(second_dict)
+    for key in full_dict:
+        if isinstance(first_dict.get(key), dict) and isinstance(second_dict.get(key), dict):
+            full_dict[key] = make_full_dict(first_dict.get(key), second_dict.get(key))
+    return full_dict
 
 
-def adding_units(full_dict, first_dict, second_dict):
+def generate_diff_struct(full_dict, first_dict, second_dict):
     diff_struct = []
     for key in full_dict:
         unit = {}
@@ -49,21 +50,23 @@ def adding_units(full_dict, first_dict, second_dict):
         else:
             unit['status'] = 'same'
         if isinstance(first_dict.get(key), dict) and isinstance(second_dict.get(key), dict):
-            unit['children'] = adding_units(full_dict[key], first_dict[key], second_dict[key])
+            unit['children'] = generate_diff_struct(full_dict[key], first_dict[key], second_dict[key])
         else:
-            if key not in first_dict:
-                unit['status'] = 'add'
-                unit['new_value'] = second_dict[key]
-            elif key not in second_dict:
-                unit['status'] = 'del'
-                unit['old_value'] = first_dict[key]
+            if unit['status'] == 'add':
+                unit['value'] = second_dict.get(key)
+            elif unit['status'] == 'del':
+                unit['value'] = first_dict.get(key)
             elif first_dict.get(key) == second_dict.get(key):
-                unit['status'] = 'same'
-                unit['old_value'] = first_dict[key]
-                unit['new_value'] = second_dict[key]
-            else:
+                unit['value'] = first_dict.get(key)
+            elif first_dict.get(key) != second_dict.get(key):
+                # TODO
+                # make status arrangements in one place if possible
                 unit['status'] = 'change'
-                unit['old_value'] = first_dict.get((key))
+                unit['old_value'] = first_dict.get(key)
                 unit['new_value'] = second_dict.get(key)
         diff_struct.append(unit)
+        diff_struct.sort(key=sorting)
     return diff_struct
+
+def sorting(unit):
+    return unit['name']

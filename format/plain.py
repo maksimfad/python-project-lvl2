@@ -1,8 +1,4 @@
-from format.formatter import sorting
-
-
 def plain(diff_struct, way=''):
-    diff_struct.sort(key=sorting)
     result_string = ''
     for item in diff_struct:
         way_to_current = way + item['name']
@@ -12,8 +8,8 @@ def plain(diff_struct, way=''):
         else:
             if item['status'] == 'same':
                 continue
-            action_text = action_status(item['status'])
-            value = value_text(item)
+            action_text = make_action_string(item['status'])
+            value = make_value_text(item)
             if item['status'] == 'del':
                 result_string += 'Property \'{}\' {}\n'.format(way_to_current, action_text)
             else:
@@ -21,7 +17,7 @@ def plain(diff_struct, way=''):
     return result_string
 
 
-def action_status(status):
+def make_action_string(status):
     result = ''
     if status == 'add':
         result += 'was added with value:'
@@ -32,20 +28,20 @@ def action_status(status):
     return result
 
 
-def value_text(item):
+def make_value_text(item):
     status = item['status']
     if status == 'change':
-        result = 'From {} to {}'.format(value_check(item['old_value']), value_check(item['new_value']))
+        result = 'From {} to {}'.format(format_value(item['old_value']), format_value(item['new_value']))
     elif status == 'del':
         result = ''
     elif status == 'add':
-        result = value_check(item['new_value'])
+        result = format_value(item['value'])
     else:
-        result = value_check(item['old_value'])
+        result = format_value(item['value'])
     return result
 
 
-def value_check(value):
+def format_value(value):
     if isinstance(value, dict):
         return '[complex value]'
     elif isinstance(value, str):

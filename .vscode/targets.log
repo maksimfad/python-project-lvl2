@@ -6,8 +6,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
+make: *** No rule to make target `all'.  Stop.
 
-# Make data base, printed on Wed Jul 13 09:51:56 2022
+
+# Make data base, printed on Thu Jul 14 11:46:33 2022
 
 # Variables
 
@@ -26,7 +29,7 @@ CURDIR := /Users/maksimfadeev/Python_studing/python-project-lvl2
 # makefile
 SHELL = /bin/sh
 # environment
-VSCODE_NLS_CONFIG = {"locale":"ru","availableLanguages":{"*":"ru"},"_languagePackId":"0c710195abefcb157427091a54303bfc.ru","_translationsConfigFile":"/Users/maksimfadeev/Library/Application Support/Code/clp/0c710195abefcb157427091a54303bfc.ru/tcf.json","_cacheRoot":"/Users/maksimfadeev/Library/Application Support/Code/clp/0c710195abefcb157427091a54303bfc.ru","_resolvedLanguagePackCoreLocation":"/Users/maksimfadeev/Library/Application Support/Code/clp/0c710195abefcb157427091a54303bfc.ru/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9","_corruptedFile":"/Users/maksimfadeev/Library/Application Support/Code/clp/0c710195abefcb157427091a54303bfc.ru/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
 # environment
 _ = /usr/bin/make
 # makefile (from `Makefile', line 1)
@@ -40,13 +43,11 @@ VSCODE_CWD = /
 # environment
 PATH = /Users/maksimfadeev/.poetry/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/.zprofile:/Users/maksimfadeev/Library/Python/3.9/bin
 # environment
-LaunchInstanceID = 3B5B4235-27E5-475C-AE0B-6E9775F5F8AC
-# environment
 ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.kUZVLrTgtZ/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.5ftvnnFhsX/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -120,7 +121,7 @@ HOMEBREW_PREFIX = /opt/homebrew
 # environment
 HOMEBREW_REPOSITORY = /opt/homebrew
 # environment
-__CF_USER_TEXT_ENCODING = 0x1F5:0x7:0x31
+__CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
 # environment
 COMMAND_MODE = unix2003
 # default
@@ -129,8 +130,6 @@ MAKEFILES :=
 <F = $(notdir $<)
 # environment
 LC_ALL = C
-# environment
-SECURITYSESSIONID = 186b2
 # automatic
 ^F = $(notdir $^)
 # default
@@ -140,9 +139,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 550
+VSCODE_PID = 857
 # variable set hash-table stats:
-# Load=65/1024=6%, Rehash=0, Collisions=1/88=1%
+# Load=63/1024=6%, Rehash=0, Collisions=1/86=1%
 
 # Pattern-specific Variable Values
 
@@ -150,9 +149,9 @@ VSCODE_PID = 550
 
 # Directories
 
-# . (device 16777231, inode 6311699): 17 files, no impossibilities.
+# . (device 16777231, inode 6311699): 18 files, no impossibilities.
 
-# 17 files, no impossibilities in 1 directories.
+# 18 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -267,8 +266,6 @@ install:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Jul 13 09:51:56 2022
+# Finished Make data base on Thu Jul 14 11:46:33 2022
 
  
-make: *** No rule to make target `all'.  Stop.
-
