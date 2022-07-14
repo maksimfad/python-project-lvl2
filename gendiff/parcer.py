@@ -6,7 +6,7 @@ import argparse
 from format.stylish import stylish
 
 
-def parcing_arguments():
+def parsing_arguments():
     parser = argparse.ArgumentParser(
         description='Compares two configuration files and shows a difference.')
     parser.add_argument('first_file')

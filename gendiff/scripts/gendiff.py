@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
-from gendiff.parcer import parcing_arguments
+from gendiff.parcer import parsing_arguments
 from gendiff.diff import generate_diff
 # from unittest import result
 
 
 def main():
-    args = parcing_arguments()
+    args = parsing_arguments()
     diff = generate_diff(args.first_file, args.second_file, args.format)
     print(diff)
 
