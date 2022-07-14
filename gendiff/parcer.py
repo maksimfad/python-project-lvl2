@@ -3,7 +3,7 @@ import json
 import yaml
 import argparse
 
-from format.formatter import stylish
+from format.stylish import stylish
 
 
 def parcing_arguments():

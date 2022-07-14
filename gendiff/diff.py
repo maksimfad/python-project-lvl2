@@ -1,7 +1,7 @@
 from gendiff.parcer import parcing_files
 from format.plain import plain
 from format.json import json_format
-from format.formatter import stylish
+from format.stylish import stylish
 
 
 def generate_diff(file_path1, file_path2, format=stylish):
