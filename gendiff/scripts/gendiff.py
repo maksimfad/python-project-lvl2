@@ -2,7 +2,6 @@
 
 from gendiff.parcer import parsing_arguments
 from gendiff.diff import generate_diff
-# from unittest import result
 
 
 def main():

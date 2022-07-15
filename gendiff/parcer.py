@@ -3,8 +3,6 @@ import json
 import yaml
 import argparse
 
-from format.stylish import stylish
-
 
 def parsing_arguments():
     parser = argparse.ArgumentParser(
@@ -12,7 +10,7 @@ def parsing_arguments():
     parser.add_argument('first_file')
     parser.add_argument('second_file')
     parser.add_argument('-f', '--format',
-                        default=stylish,
+                        default='stylish',
                         help='set format of output')
     args = parser.parse_args()
     return args

@@ -4,6 +4,13 @@
     * add files to .gitignore
     * remake asciinemas (not all)
     * install packet on my computer
+    * make some attributes in modules private using _
+    * make from module import * using __all__, see here https://ru.hexlet.io/blog/posts/likbez-po-paketam-i-shpargalka-po-modulyam-v-python
+    * rerwrite string with interpolation print(f'{greeting}, {first_name}!') instead format func
+    * think about rewriting wiht multi-line strings text = '''Пример текста,
+        состоящего из
+        нескольких строк'''
+    
     
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/maksimfad/python-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/maksimfad/python-project-lvl2/actions)

@@ -6,42 +6,42 @@ def plain(diff_struct, way=''):
             way_to_current += '.'
             result_string += plain(item['children'], way_to_current)
         else:
-            if item['status'] == 'same':
+            if item['status'] == ' ':
                 continue
-            action_text = make_action_string(item['status'])
-            value = make_value_text(item)
-            if item['status'] == 'del':
+            action_text = _make_action_string(item['status'])
+            value = _make_value_text(item)
+            if item['status'] == '-':
                 result_string += 'Property \'{}\' {}\n'.format(way_to_current, action_text)
             else:
                 result_string += 'Property \'{}\' {} {}\n'.format(way_to_current, action_text, value)
     return result_string
 
 
-def make_action_string(status):
+def _make_action_string(status):
     result = ''
-    if status == 'add':
+    if status == '+':
         result += 'was added with value:'
-    elif status == 'del':
+    elif status == '-':
         result += 'was removed'
     elif status == 'change':
         result += 'was updated.'
     return result
 
 
-def make_value_text(item):
+def _make_value_text(item):
     status = item['status']
     if status == 'change':
-        result = 'From {} to {}'.format(format_value(item['old_value']), format_value(item['new_value']))
-    elif status == 'del':
+        result = 'From {} to {}'.format(_format_value(item['old_value']), _format_value(item['new_value']))
+    elif status == '-':
         result = ''
-    elif status == 'add':
-        result = format_value(item['value'])
+    elif status == '+':
+        result = _format_value(item['value'])
     else:
-        result = format_value(item['value'])
+        result = _format_value(item['value'])
     return result
 
 
-def format_value(value):
+def _format_value(value):
     if isinstance(value, dict):
         return '[complex value]'
     elif isinstance(value, str):

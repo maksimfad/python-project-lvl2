@@ -12,24 +12,27 @@ def stylish(diff_struct, space=' ', times=2):
         else:
             tabs = space * times
             status = key.get('status')
-            if status == 'same':
-                result_string += '{}  {}: {}\n'.format(tabs, name, format_value(key.get('value'), times))
-            elif status == 'del':
-                result_string += '{}- {}: {}\n'.format(tabs, name, format_value(key.get('value'), times))
-            elif status == 'add':
-                result_string += '{}+ {}: {}\n'.format(tabs, name, format_value(key.get('value'), times))
-            elif status == 'change':
-                result_string += '{}- {}: {}\n'.format(tabs, name, format_value(key.get('old_value'), times))
-                result_string += '{}+ {}: {}\n'.format(tabs, name, format_value(key.get('new_value'), times))
+            if status == 'change':
+                old_value = _format_value(key.get('old_value'), times)
+                result_string += _format_string(tabs, '-', name, old_value)
+                new_value = _format_value(key.get('new_value'), times)
+                result_string += _format_string(tabs, '+', name, new_value)
+            else:
+                value = _format_value(key.get('value'), times)
+                result_string += _format_string(tabs, status, name, value)
     times -= 2
     tabs = space * times
     result_string += (tabs + '}')
     return result_string
 
 
-def format_value(value, times):
+def _format_string(tabs, sign, name, value):
+    return f'{tabs}{sign} {name}: {value}\n'
+
+
+def _format_value(value, times):
     if isinstance(value, dict):
-        return_string = format_dict_value(value, times)
+        return_string = _format_dict_value(value, times)
     else:
         if value is True:
             value = 'true'
@@ -41,18 +44,19 @@ def format_value(value, times):
     return return_string
 
 
-def format_dict_value(dict_value, times):
+def _format_dict_value(dict_value, times):
     return_string = '{\n'
     times += 4
-    shift = ' ' * times
+    tabs = ' ' * times
     for key in dict_value:
         if isinstance(dict_value[key], dict):
-            return_string += '{}  {}: '.format(shift, key)
-            return_string += format_dict_value(dict_value[key], times)
+            return_string += f'{tabs}  {key}: '
+            return_string += _format_dict_value(dict_value[key], times)
             return_string += '\n'
         else:
-            return_string += '{}  {}: {}\n'.format(shift, key, format_value(dict_value[key], times))
+            formatted_value = _format_value(dict_value[key], times)
+            return_string += f'{tabs}  {key}: {formatted_value}\n'
     times -= 2
-    shift = ' ' * times
-    return_string += shift + '}'
+    tabs = ' ' * times
+    return_string += tabs + '}'
     return return_string
