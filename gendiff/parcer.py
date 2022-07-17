@@ -4,7 +4,7 @@ import yaml
 import argparse
 
 
-def parsing_arguments():
+def parse_arguments():
     parser = argparse.ArgumentParser(
         description='Compares two configuration files and shows a difference.')
     parser.add_argument('first_file')
@@ -16,7 +16,7 @@ def parsing_arguments():
     return args
 
 
-def parcing_files(file_path1, file_path2):
+def parse_files(file_path1, file_path2):
     file_paths = (file_path1, file_path2)
     files = []
     for file_path in file_paths:

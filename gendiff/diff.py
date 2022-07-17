@@ -1,28 +1,33 @@
-from gendiff.parcer import parcing_files
+from gendiff.parcer import parse_files
 from format.plain import plain
 from format.json import json_format
 from format.stylish import stylish
 
 
-def generate_diff(file_path1, file_path2, format=stylish):
+def generate_diff(file_path1, file_path2, format='stylish'):
     # Generates diff string in different formats
-    first_dict, second_dict = parcing_files(file_path1, file_path2)
+    first_dict, second_dict = parse_files(file_path1, file_path2)
     full_dict = _make_full_dict(first_dict, second_dict)
     diff_struct = _generate_diff_struct(full_dict, first_dict, second_dict)
     # print(diff_struct)
+    format = _set_format_func(format)
+    diff_string = format(diff_struct)
+    # FIXME
+    # fix func plain() in plain module to remove this block
+    if format == plain:
+        # removing last '\n' from result in plain format
+        diff_string = diff_string[:-1]
+    return diff_string
+
+
+def _set_format_func(format):
     if format == 'plain':
         format = plain
     if format == 'json':
         format = json_format
     if format == 'stylish':
         format = stylish
-    result_text = format(diff_struct)
-    # FIXME
-    # fix func plain() in plain module to remove this block
-    if format == plain:
-        # removing last '\n' from result in plain format
-        result_text = result_text[:-1]
-    return result_text
+    return format
 
 
 def _make_full_dict(first_dict, second_dict):
@@ -61,13 +66,13 @@ def _generate_diff_struct(full_dict, first_dict, second_dict):
             elif first_dict.get(key) != second_dict.get(key):
                 # TODO
                 # make status arrangements in one place if possible
-                unit['status'] = 'change'
+                unit['status'] = '-+'
                 unit['old_value'] = first_dict.get(key)
-                unit['new_value'] = second_dict.get(key)
+                unit['value'] = second_dict.get(key)
         diff_struct.append(unit)
-        diff_struct.sort(key=_sorting)
+        diff_struct.sort(key=_sort_by_name)
     return diff_struct
 
 
-def _sorting(unit):
+def _sort_by_name(unit):
     return unit['name']

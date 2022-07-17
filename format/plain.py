@@ -8,7 +8,7 @@ def plain(diff_struct, way=''):
         else:
             if item['status'] == ' ':
                 continue
-            action_text = _make_action_string(item['status'])
+            action_text = _make_action_text(item['status'])
             value = _make_value_text(item)
             if item['status'] == '-':
                 result_string += 'Property \'{}\' {}\n'.format(way_to_current, action_text)
@@ -17,27 +17,27 @@ def plain(diff_struct, way=''):
     return result_string
 
 
-def _make_action_string(status):
+def _make_action_text(status):
     result = ''
     if status == '+':
         result += 'was added with value:'
     elif status == '-':
         result += 'was removed'
-    elif status == 'change':
+    elif status == '-+':
         result += 'was updated.'
     return result
 
 
 def _make_value_text(item):
     status = item['status']
-    if status == 'change':
-        result = 'From {} to {}'.format(_format_value(item['old_value']), _format_value(item['new_value']))
+    value = _format_value(item.get('value'))
+    old_value = _format_value(item.get('old_value'))
+    if status == '-+':
+        result = f'From {old_value} to {value}'
     elif status == '-':
         result = ''
-    elif status == '+':
-        result = _format_value(item['value'])
     else:
-        result = _format_value(item['value'])
+        result = value
     return result
 
 
