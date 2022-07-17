@@ -46,7 +46,7 @@ def _format_value(value):
     if isinstance(value, dict):
         formatted_value = '[complex value]'
     elif isinstance(value, str):
-        formatted_value =  f'\'{value}\''
+        formatted_value = f'\'{value}\''
     elif isinstance(value, bool):
         if value is False:
             formatted_value = 'false'
