@@ -42,16 +42,18 @@ def _make_value_text(item):
 
 
 def _format_value(value):
+    formatted_value = ''
     if isinstance(value, dict):
-        return '[complex value]'
+        formatted_value = '[complex value]'
     elif isinstance(value, str):
-        return '\'{}\''.format(value)
+        formatted_value =  f'\'{value}\''
     elif isinstance(value, bool):
         if value is False:
-            return 'false'
+            formatted_value = 'false'
         elif value is True:
-            return 'true'
+            formatted_value = 'true'
     elif value is None:
-        return 'null'
+        formatted_value = 'null'
     elif isinstance(value, int):
-        return '{}'.format(value)
+        formatted_value = f'{value}'
+    return formatted_value
