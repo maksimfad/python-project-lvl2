@@ -1,6 +1,7 @@
 from gendiff.scripts.gendiff import generate_diff
 from gendiff.parcer import parse_files
-import json, yaml
+import json
+import yaml
 
 
 def test_generate_diff_json():
